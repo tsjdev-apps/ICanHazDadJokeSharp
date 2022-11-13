@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ICanHazDadJokeSampleApp.MainPage">
+
+    <VerticalStackLayout Padding="24"
+                         Spacing="48">
+        
+        <Button Text="Get Random Joke"
+                Clicked="GetRandomJokeButtonOnClicked" />
+
+        <VerticalStackLayout Spacing="6">
+            <Entry x:Name="JokeIdEntry"
+                   Text="lyPZgVn3Le"
+                   Placeholder="Joke ID" />
+            <Button Text="Get Specific Joke"
+                    Clicked="GetSpecificJokeButtonOnClicked" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Spacing="6">
+            <Entry x:Name="SearchTermEntry"
+                   Text="Ocean"
+                   Placeholder="Search Term" />
+            <Button Text="Search For A Joke"
+                    Clicked="SearchForAJokeButtonOnClicked" />
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
