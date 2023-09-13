@@ -22,7 +22,7 @@ namespace ICanHazDadJokeSharp
         public string UserAgent { get; private set; }
 
         /// <summary>
-        ///     Inittializes a new instance of the DadJokeClient.
+        ///     Initializes a new instance of the DadJokeClient.
         /// </summary>
         public DadJokeClient(string name, string contactDetails)
         {
@@ -50,10 +50,27 @@ namespace ICanHazDadJokeSharp
         }
 
         /// <inheritdoc/>
+        public async Task<string> GetJokeAsImageUrlAsync(string id)
+        {
+            await Task.Yield();
+            return $"https://icanhazdadjoke.com/j/{id}.png";
+        }
+
+        /// <inheritdoc/>
 		public async Task<DadJokeSearchResults> SearchJokesAsync(string term = null, int page = 1, int limit = 20)
         {
             term = string.IsNullOrEmpty(term) ? null : Uri.EscapeUriString(term);
-            var response = await _httpClient.GetStringAsync(string.Format(SearchUrl, term, page, limit)).ConfigureAwait(false);
+
+            if (limit < 0)
+            {
+                limit = 1;
+            }
+            else if (limit > 30)
+            {
+                limit = 30;
+            }
+
+            string response = await _httpClient.GetStringAsync(string.Format(SearchUrl, term, page, limit)).ConfigureAwait(false);
             return JsonSerializer.Deserialize<DadJokeSearchResults>(response);
         }
 
@@ -82,5 +99,7 @@ namespace ICanHazDadJokeSharp
 
             return httpClient;
         }
+
+
     }
 }
