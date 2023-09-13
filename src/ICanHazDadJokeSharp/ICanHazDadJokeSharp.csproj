@@ -4,16 +4,18 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>ICanHazDadJokeSharp</Title>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Authors>tsjdev-apps</Authors>
     <Company>tsjdev-apps</Company>
-    <Copyright>© Thomas Sebastian Jensen | 2017-2022</Copyright>
+    <Copyright>© Thomas Sebastian Jensen | 2017-2023</Copyright>
     <PackageProjectUrl>https://github.com/tsjdev-apps/ICanHazDadJokeSharp</PackageProjectUrl>
     <PackageIcon>Assets\icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/tsjdev-apps/ICanHazDadJokeSharp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>ICanHazDadJoke, Wrapper, Dad Jokes</PackageTags>
-    <PackageReleaseNotes>0.0.1 - First Release</PackageReleaseNotes>
+    <PackageReleaseNotes>- Add new method to get a joke as an image
+- NuGet packages updates
+- Code improvements</PackageReleaseNotes>
     <Description>Simple .NET Wrapper for the ICanHazDadJoke.com website to get a random dad joke.</Description>
   </PropertyGroup>
 
