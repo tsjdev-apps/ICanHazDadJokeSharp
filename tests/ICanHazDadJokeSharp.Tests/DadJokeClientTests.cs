@@ -13,10 +13,10 @@ namespace ICanHazDadJokeSharp.Tests
         public async Task GetRandomJokeAsyncTest()
         {
             // arrange
-            var client = new DadJokeClient(Name, ContactDetails);
+            DadJokeClient client = new(Name, ContactDetails);
 
             // act
-            var joke = await client.GetRandomJokeAsync();
+            DadJoke joke = await client.GetRandomJokeAsync();
 
             // assert            
             Assert.Multiple(() =>
@@ -32,10 +32,10 @@ namespace ICanHazDadJokeSharp.Tests
         public async Task GetJokeAsyncTest()
         {
             // arrange
-            var client = new DadJokeClient(Name, ContactDetails);
+            DadJokeClient client = new(Name, ContactDetails);
 
             // act
-            var joke = await client.GetJokeAsync(TestJokeId);
+            DadJoke joke = await client.GetJokeAsync(TestJokeId);
 
             // assert
             Assert.Multiple(() =>
@@ -48,13 +48,26 @@ namespace ICanHazDadJokeSharp.Tests
         }
 
         [Test]
+        public async Task GetJokeAsImageUrlAsyncText()
+        {
+            // arrange
+            DadJokeClient client = new(Name, ContactDetails);
+
+            // act
+            string jokeAsImage = await client.GetJokeAsImageUrlAsync(TestJokeId);
+
+            // assert
+            Assert.That(jokeAsImage, Is.EqualTo($"https://icanhazdadjoke.com/j/{TestJokeId}.png"));
+        }
+
+        [Test]
         public async Task SearchJokesAsyncTest()
         {
             // arrange
-            var client = new DadJokeClient(Name, ContactDetails);
+            DadJokeClient client = new(Name, ContactDetails);
 
             // act
-            var results = await client.SearchJokesAsync(TestJokeJoke);
+            DadJokeSearchResults results = await client.SearchJokesAsync(TestJokeJoke);
 
             // assert
             Assert.Multiple(() =>
@@ -78,10 +91,10 @@ namespace ICanHazDadJokeSharp.Tests
         public async Task SearchJokesAsyncWithNullTest()
         {
             // arrange
-            var client = new DadJokeClient(Name, ContactDetails);
+            DadJokeClient client = new(Name, ContactDetails);
 
             // act
-            var results = await client.SearchJokesAsync();
+            DadJokeSearchResults results = await client.SearchJokesAsync();
 
             // assert
             Assert.Multiple(() =>

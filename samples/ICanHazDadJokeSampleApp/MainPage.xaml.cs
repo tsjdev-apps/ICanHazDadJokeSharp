@@ -4,6 +4,9 @@ namespace ICanHazDadJokeSampleApp
 {
     public partial class MainPage : ContentPage
     {
+        private readonly DadJokeClient _client = 
+            new("ICanHazDadJokeSampleApp", "https://github.com/tsjdev-apps/ICanHazDadJokeSharp");
+
         public MainPage()
         {
             InitializeComponent();
@@ -11,26 +14,23 @@ namespace ICanHazDadJokeSampleApp
 
         private async void GetRandomJokeButtonOnClicked(object sender, EventArgs e)
         {
-            var client = new DadJokeClient("ICanHazDadJokeSampleApp", "https://github.com/tsjdev-apps/ICanHazDadJokeSharp");
-            var joke = await client.GetRandomJokeAsync();
+            DadJoke joke = await _client.GetRandomJokeAsync();
 
             await DisplayAlert($"Joke: {joke?.Id}", joke?.Joke, "OK");
         }
 
         private async void GetSpecificJokeButtonOnClicked(object sender, EventArgs e)
         {
-            var client = new DadJokeClient("ICanHazDadJokeSampleApp", "https://github.com/tsjdev-apps/ICanHazDadJokeSharp");
-            var joke = await client.GetJokeAsync(JokeIdEntry.Text);
+            DadJoke joke = await _client.GetJokeAsync(JokeIdEntry.Text);
 
             await DisplayAlert($"Joke: {joke?.Id}", joke?.Joke, "OK");
         }
 
         private async void SearchForAJokeButtonOnClicked(object sender, EventArgs e)
         {
-            var client = new DadJokeClient("ICanHazDadJokeSampleApp", "https://github.com/tsjdev-apps/ICanHazDadJokeSharp");
-            var searchResults = await client.SearchJokesAsync(SearchTermEntry.Text);
+            DadJokeSearchResults searchResults = await _client.SearchJokesAsync(SearchTermEntry.Text);
 
-            var firstJoke = searchResults.Jokes.FirstOrDefault(); ;
+            DadJoke firstJoke = searchResults.Jokes.FirstOrDefault(); ;
 
             if (firstJoke is not null)
             {
@@ -40,6 +40,13 @@ namespace ICanHazDadJokeSampleApp
             {
                 await DisplayAlert($"Hint", $"There is no joke for the search term: '{SearchTermEntry.Text}' available.", "OK");
             }            
+        }
+
+        private async void GetImageJokeButtonOnClicked(object sender, EventArgs e)
+        {
+            string jokeImage = await _client.GetJokeAsImageUrlAsync(ImageJokeIdEntry.Text);
+
+            JokeImage.Source = jokeImage;
         }
     }
 }

@@ -24,5 +24,16 @@
             <Button Text="Search For A Joke"
                     Clicked="SearchForAJokeButtonOnClicked" />
         </VerticalStackLayout>
+
+        <VerticalStackLayout Spacing="6">
+            <Entry x:Name="ImageJokeIdEntry"
+                   Text="lyPZgVn3Le"
+                   Placeholder="Image Joke ID" />
+            <Button Text="Get Image Joke"
+                    Clicked="GetImageJokeButtonOnClicked" />
+            <Image x:Name="JokeImage"
+                   Aspect="AspectFit"
+                   MaximumWidthRequest="420" />
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

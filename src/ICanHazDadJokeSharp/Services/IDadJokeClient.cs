@@ -23,6 +23,11 @@ namespace ICanHazDadJokeSharp
         Task<DadJoke> GetRandomJokeAsync();
 
         /// <summary>
+        ///     Get a specific joke from the API by passing the joke id as an image.
+        /// </summary>
+        Task<string> GetJokeAsImageUrlAsync(string id);
+
+        /// <summary>
         ///     Searches for jokes.
         /// </summary>
         Task<DadJokeSearchResults> SearchJokesAsync(string term = null, int page = 1, int limit = 20);
